@@ -5,6 +5,11 @@
 
 package com.marcoslopez7.pocketlawyer.Model;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.sql.SQLException;
+
 /**
  * Created by Marcos L on 11/11/2015.
  */
@@ -15,12 +20,16 @@ public class ArticuloModelo {
     private String categoria;
     private int prioridad;
 
-    public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad){
+
+
+    public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad, Context context){
         this.id = id;
         this.titulo = titulo;
         this.texto = texto;
         this.categoria = categoria;
         this.prioridad = prioridad;
+
+
     }
 
     public int getId() {
@@ -62,4 +71,6 @@ public class ArticuloModelo {
     public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
+
+
 }
