@@ -16,7 +16,12 @@ public class ArticuloControlador {
         return articulo;
     }
 
+    public ArticuloModelo getArticuloByCategoria(String categoria){
+        return articulo;
+    }
+
     public ArticuloModelo getArticulo() {
         return articulo;
     }
+
 }
