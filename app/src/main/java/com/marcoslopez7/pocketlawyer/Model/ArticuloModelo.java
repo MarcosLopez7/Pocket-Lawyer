@@ -22,7 +22,7 @@ public class ArticuloModelo {
 
 
 
-    public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad, Context context){
+    public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad){
         this.id = id;
         this.titulo = titulo;
         this.texto = texto;
