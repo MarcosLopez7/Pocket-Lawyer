@@ -9,7 +9,7 @@ package com.marcoslopez7.pocketlawyer.Model;
  */
 public class ArticuloDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "Articulos.db";
 
     public ArticuloDBHelper(Context context) {
@@ -18,6 +18,8 @@ public class ArticuloDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ArticuloReader.CREATE_TABLE_LEYES);
         db.execSQL(ArticuloReader.CREATE_TABLE_ARTICULOS);
+        db.execSQL(ArticuloReader.CREATE_TABLE_BENEFICIOS);
+        db.execSQL(ArticuloReader.CREATE_TABLE_DEBERES);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -25,6 +27,8 @@ public class ArticuloDBHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_LEYES);
         db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_ARTICULOS);
+        db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_BENEFICIOS);
+        db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_DEBERES);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

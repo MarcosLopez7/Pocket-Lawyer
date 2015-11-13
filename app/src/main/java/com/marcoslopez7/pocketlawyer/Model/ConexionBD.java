@@ -16,12 +16,14 @@ import java.util.Vector;
 public final class ConexionBD {
 
     private Vector<ArticuloModelo> articulos;
+    private Vector<Ley> leyes;
     private ArticuloDBHelper dbHelper;
     private SQLiteDatabase bd;
 
     public ConexionBD(Context context){
         dbHelper = new ArticuloDBHelper(context);
         articulos = new Vector<ArticuloModelo>();
+        leyes = new Vector<Ley>();
         rellenaArticulos();
     }
 
@@ -88,16 +90,29 @@ public final class ConexionBD {
     }
 */
     private void rellenaArticulos(){
+
         /*
-        ArticuloModelo articulo1 = new ArticuloModelo(0, "Artículo 1o.", "En los Estados Unidos Mexicanos todas" +
-                " las personas gozarán de los derechos humanos reconocidos en esta Constitución y en los" +
-                " tratados internacionales de los que el Estado Mexicano sea parte, así como de las garantías " +
-                "para su protección, cuyo ejercicio no podrá restringirse ni suspenderse, salvo en los casos " +
-                "y bajo las condiciones que esta Constitución establece.", "Constitucion", 1);
+
+        public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad, String resumen,
+                          String beneficios, String deberes, int id_ley){
+        this.id = id;
+        this.titulo = titulo;
+        this.texto = texto;
+        this.categoria = categoria;
+        this.prioridad = prioridad;
+        this.resumen = resumen;
+        this.beneficios = beneficios;
+        this.deberes = deberes;
+        this.id_ley = id_ley;
+    }
+         */
+
+        ArticuloModelo articulo1 = new ArticuloModelo(0, "Artículo 1o.", "Constitucion", 1, "Derechos" +
+                " humanos y abolición de la esclavitud",  1);
 
         articulos.addElement(articulo1);
 
-        ArticuloModelo articulo2 = new ArticuloModelo(0, "Artículo 2do.", "La Nación tiene una composición" +
+        /*ArticuloModelo articulo2 = new ArticuloModelo(0, "Artículo 2do.", "La Nación tiene una composición" +
                 " pluricultural sustentada originalmente en sus pueblos indígenas que son aquellos que " +
                 "descienden de poblaciones que habitaban en el territorio actual del país al iniciarse la" +
                 " colonización y que conservan sus propias instituciones sociales, económicas, culturales " +
@@ -111,7 +126,7 @@ public final class ConexionBD {
                 "y secundaria conforman la educación básica; ésta y la media superior serán " +
                 "obligatorias.", "Constitucion", 2);
 
-        articulos.addElement(articulo3);
-        */
+        articulos.addElement(articulo3);*/
+
     }
 }

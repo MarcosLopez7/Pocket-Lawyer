@@ -17,25 +17,19 @@ public class ArticuloModelo {
     private int id;
     private String titulo;
     private String resumen;
-    private String texto;
-    private String beneficios;
-    private String deberes;
     private String categoria;
     private int id_ley;
     private int prioridad;
 
 
 
-    public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad, String resumen,
-                          String beneficios, String deberes, int id_ley){
+    public ArticuloModelo(int id, String titulo, String categoria, int prioridad, String resumen,
+                          int id_ley){
         this.id = id;
         this.titulo = titulo;
-        this.texto = texto;
         this.categoria = categoria;
         this.prioridad = prioridad;
         this.resumen = resumen;
-        this.beneficios = beneficios;
-        this.deberes = deberes;
         this.id_ley = id_ley;
     }
 
@@ -45,22 +39,6 @@ public class ArticuloModelo {
 
     public void setResumen(String resumen) {
         this.resumen = resumen;
-    }
-
-    public String getBeneficios() {
-        return beneficios;
-    }
-
-    public void setBeneficios(String beneficios) {
-        this.beneficios = beneficios;
-    }
-
-    public String getDeberes() {
-        return deberes;
-    }
-
-    public void setDeberes(String deberes) {
-        this.deberes = deberes;
     }
 
     public int getId_ley() {
@@ -85,14 +63,6 @@ public class ArticuloModelo {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getTexto() {
-        return texto;
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
     }
 
     public String getCategoria() {
