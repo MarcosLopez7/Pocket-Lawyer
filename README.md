@@ -18,9 +18,19 @@ titulo     TEXT    -
 resumen    TEXT    -
 texto      TEXT    -
 categoria  TEXT    -
-beneficios TEXT    -
-deberes    TEXT    -
 id_ley     Integer FK
 prioridad  TEXT    -
+
+Tabla Deberes:
+Columna     Tipo    PK
+id          Integer PK
+texto       TEXT    -
+id_articulo Integer FK
+
+Tabla Beneficios:
+Columna     Tipo    PK
+id          Integer PK
+texto       TEXT    -
+id_articulo Integer FK
 
 La estructuración está en Model/ArticuloReader.java
