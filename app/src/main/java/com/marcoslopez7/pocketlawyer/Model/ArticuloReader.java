@@ -31,8 +31,6 @@ public class ArticuloReader {
                         BD.COLUMN_NAME_TITULO_ARTICULO + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_RESUMEN + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_CATEGORIA + TEXT_TYPE + COMMA_SEP +
-                        BD.COLUMN_NAME_BENEFICIOS + TEXT_TYPE + COMMA_SEP +
-                        BD.COLUMN_NAME_DEBERES + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_ID_LEY_F + " INTEGER" + COMMA_SEP +
                         BD.COLUMN_NAME_PRIORIDAD + " INTEGER" + COMMA_SEP +
                         FOREIGN_KEY_LEY +
@@ -67,8 +65,6 @@ public class ArticuloReader {
             public static final String COLUMN_NAME_TITULO_ARTICULO = "titulo";
             public static final String COLUMN_NAME_RESUMEN = "resumen";
             public static final String COLUMN_NAME_CATEGORIA = "categoria";
-            public static final String COLUMN_NAME_BENEFICIOS = "beneficios";
-            public static final String COLUMN_NAME_DEBERES = "deberes";
             public static final String COLUMN_NAME_ID_LEY_F = "id_ley";
             public static final String COLUMN_NAME_PRIORIDAD = "prioridad";
 

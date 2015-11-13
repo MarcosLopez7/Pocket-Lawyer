@@ -17,14 +17,20 @@ public final class ConexionBD {
 
     private Vector<ArticuloModelo> articulos;
     private Vector<Ley> leyes;
+    private Vector<Beneficios> beneficios;
+    private Vector<Deber> deberes;
     private ArticuloDBHelper dbHelper;
     private SQLiteDatabase bd;
 
     public ConexionBD(Context context){
         dbHelper = new ArticuloDBHelper(context);
-        articulos = new Vector<ArticuloModelo>();
-        leyes = new Vector<Ley>();
+        articulos = new Vector<>();
+        leyes = new Vector<>();
+        beneficios = new Vector<>();
+        deberes = new Vector<>();
+        rellenaLeyes();
         rellenaArticulos();
+        rellenaDeberes();
     }
 
     //ABRIR BASE DE DATOS
@@ -38,20 +44,50 @@ public final class ConexionBD {
     }
 
     //INSERTAR EN LA BASE DE DATOS
-    /*
+
     public void insertar(){
         bd.beginTransaction();
 
         try {
+            for (int i = 0; i < leyes.size(); i++){
+                ContentValues values = new ContentValues();
+
+                values.put(ArticuloReader.BD.COLUMN_NAME_TITULO_LEY, leyes.elementAt(i).getTitulo());
+                values.put(ArticuloReader.BD.COLUMN_NAME_FECHA_MODIFICACION, leyes.elementAt(i).getFecha_ultima_modificacion());
+                values.put(ArticuloReader.BD.COLUMN_NAME_NUMERO_ARTICULOS, leyes.elementAt(i).getNumero_articulos());
+                values.put(ArticuloReader.BD.COLUMN_NAME_LINK, leyes.elementAt(i).getLink());
+
+                bd.insert(ArticuloReader.BD.TABLE_NAME_LEYES, null, values);
+            }
+
             for (int i = 0; i < articulos.size(); i++) {
                 ContentValues values = new ContentValues();
 
-                values.put(ArticuloReader.BD.COLUMN_NAME_TITULO, articulos.elementAt(i).getTitulo());
-                values.put(ArticuloReader.BD.COLUMN_NAME_TEXTO, articulos.elementAt(i).getTexto());
+                values.put(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO, articulos.elementAt(i).getTitulo());
+                values.put(ArticuloReader.BD.COLUMN_NAME_ID_LEY_F, articulos.elementAt(i).getId_ley());
+                values.put(ArticuloReader.BD.COLUMN_NAME_RESUMEN, articulos.elementAt(i).getResumen());
                 values.put(ArticuloReader.BD.COLUMN_NAME_CATEGORIA, articulos.elementAt(i).getCategoria());
                 values.put(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD, articulos.elementAt(i).getPrioridad());
 
-                bd.insert(ArticuloReader.BD.TABLE_NAME, null, values);
+                bd.insert(ArticuloReader.BD.TABLE_NAME_ARTICULOS, null, values);
+            }
+
+            for (int i = 0; i < deberes.size(); i++){
+                ContentValues values = new ContentValues();
+
+                values.put(ArticuloReader.BD.COLUMN_NAME_TEXTO, deberes.elementAt(i).getTexto());
+                values.put(ArticuloReader.BD._ID_ARTICULO_F, deberes.elementAt(i).getId_articulo());
+
+                bd.insert(ArticuloReader.BD.TABLE_NAME_DEBERES, null, values);
+            }
+
+            for (int i = 0; i < beneficios.size(); i++){
+                ContentValues values = new ContentValues();
+
+                values.put(ArticuloReader.BD.COLUMN_NAME_TEXTO, deberes.elementAt(i).getTexto());
+                values.put(ArticuloReader.BD._ID_ARTICULO_F, deberes.elementAt(i).getId_articulo());
+
+                bd.insert(ArticuloReader.BD.TABLE_NAME_BENEFICIOS, null, values);
             }
             bd.setTransactionSuccessful();
         }
@@ -61,7 +97,7 @@ public final class ConexionBD {
 
 
     }
-*/
+
     //SELECT TODA LA TABLA, ESTO SE VA PARA LA FUNCION BUSCADOR
     /*
     public Vector<ArticuloModelo> selectAllArticulos(){
@@ -89,44 +125,99 @@ public final class ConexionBD {
         return articulos;
     }
 */
+    private void rellenaLeyes(){
+
+        Ley ley1 = new Ley(0, "Constitucion de los Estados Unidos Mexicanos", "2015-07-10", 136, "http://www.diputados.gob.mx/LeyesBiblio/htm/1.htm");
+        Ley ley2 = new Ley(0, "REGLAMENTO DE TRÁNSITO DEL DISTRITO FEDERAL", "2015-08-17", 70, "http://www.consejeria.df.gob.mx/portal_old/uploads/gacetas/0dfe0f2c2728da104e72f26974d2ad23.pdf");
+
+        leyes.addElement(ley1);
+        leyes.addElement(ley2);
+    }
+
     private void rellenaArticulos(){
 
-        /*
 
-        public ArticuloModelo(int id, String titulo, String texto, String categoria, int prioridad, String resumen,
-                          String beneficios, String deberes, int id_ley){
-        this.id = id;
-        this.titulo = titulo;
-        this.texto = texto;
-        this.categoria = categoria;
-        this.prioridad = prioridad;
-        this.resumen = resumen;
-        this.beneficios = beneficios;
-        this.deberes = deberes;
-        this.id_ley = id_ley;
-    }
-         */
+        ArticuloModelo articulo1 = new ArticuloModelo(0, "Artículo 1o.", "Derechos Humanos", 1, " Igualdad ante " +
+                "la Ley, prohibición de la esclavitud y de la discriminación. ",  1);
 
-        ArticuloModelo articulo1 = new ArticuloModelo(0, "Artículo 1o.", "Constitucion", 1, "Derechos" +
-                " humanos y abolición de la esclavitud",  1);
+        ArticuloModelo articulo2 = new ArticuloModelo(0, "Artículo 3o.", "Educacion", 3, "TODO INDIVIDUO " +
+                "TIENE DERECHO A RECIBIR EDUCACION. EL ESTADO GARANTIZARA LA CALIDAD EN LA EDUCACION OBLIGATORIA " +
+                "DE MANERA QUE LOS MATERIALES Y METODOS EDUCATIVOS, LA ORGANIZACION ESCOLAR, LA INFRAESTRUCTURA" +
+                " EDUCATIVA Y LA IDONEIDAD DE LOS DOCENTES Y LOS DIRECTIVOS GARANTICEN EL MAXIMO LOGRO " +
+                "DE APRENDIZAJE DE LOS EDUCANDOS. LA LIBERTAD DE CREENCIAS, DICHA EDUCACION SERA LAICA Y, " +
+                "POR TANTO, SE MANTENDRA POR COMPLETO AJENA A CUALQUIER DOCTRINA RELIGIOSA.  SERA NACIONAL " +
+                "EVITANDO LOS PRIVILEGIOS DE RAZAS, DE RELIGION, DE GRUPOS, DE SEXOS O DE INDIVIDUOS, TODA LA " +
+                "EDUCACION QUE EL ESTADO IMPARTA SERA GRATUITA; ", 1);
+
+        ArticuloModelo articulo3 = new ArticuloModelo(0, "Artículo 4o.", "Trabajo", 2, "Este articulo " +
+                "consagra la garantía de libertad refiriéndose a la libertad de Trabajo señalándonos en " +
+                "su primer párrafo que: “a ninguna persona se le podrá negar el derecho de dedicarse a " +
+                "la profesión, industria, comercio o trabajo que le    acomode al individuo, a condición de " +
+                "que sea lícito, prohíbe que se obligue a una persona a prestar trabajos personales sin la justa retribución y sin su pleno consentimiento " +
+                "El Estado debe impedir que se celebre contrato o pacto que tenga por objeto el menoscabo, " +
+                "la pérdida o el irrevocable sacrificio de la libertad de la persona.", 1);
+
+        ArticuloModelo articulo4 = new ArticuloModelo(0, "Articulo 8", "Transito", 2, "Deberes de los " +
+                "conductores de todo tipo", 2);
+
+        ArticuloModelo articulo5 = new ArticuloModelo(0, "Articulo 50", "Transito", 1, "Limites de los " +
+                "niveles de alcohol en conductores de vehiculos motorizados", 2);
 
         articulos.addElement(articulo1);
-
-        /*ArticuloModelo articulo2 = new ArticuloModelo(0, "Artículo 2do.", "La Nación tiene una composición" +
-                " pluricultural sustentada originalmente en sus pueblos indígenas que son aquellos que " +
-                "descienden de poblaciones que habitaban en el territorio actual del país al iniciarse la" +
-                " colonización y que conservan sus propias instituciones sociales, económicas, culturales " +
-                "y políticas, o parte de ellas.", "Constitucion", 2);
-
         articulos.addElement(articulo2);
+        articulos.addElement(articulo3);
+        articulos.addElement(articulo4);
+        articulos.addElement(articulo5);
+    }
 
-        ArticuloModelo articulo3 = new ArticuloModelo(0, "Artículo 3ro.", "Todo individuo tiene derecho a " +
-                "recibir educación. El Estado –Federación, Estados, Distrito Federal y Municipios–, impartirá " +
-                "educación preescolar, primaria, secundaria y media superior. La educación preescolar, primaria " +
-                "y secundaria conforman la educación básica; ésta y la media superior serán " +
-                "obligatorias.", "Constitucion", 2);
+    private void rellenaDeberes()
+    {
+        Deber deber1 = new Deber(0, "No discriminar a ninguna persona", 1);
+        Deber deber2 = new Deber(0, "Tener un trabajo licito", 3);
+        Deber deber3 = new Deber(0, "Obedecer señalamientos", 4);
+        Deber deber4 = new Deber(0, "Obeder personas que dan apoyo vial", 4);
+        Deber deber5 = new Deber(0, "Precaucion con los peatones en la via", 4);
+        Deber deber6 = new Deber(0, "Compartir carrir de circulacion, cambiar de carril de manera escalonada " +
+                "tomar el carril extremo de manera anticipada para dar vuelta", 4);
+        Deber deber7 = new Deber(0, "Rebasar otro vehículo por el carril izquierdo", 4);
+        Deber deber8 = new Deber(0, "Alinearse a la derecha y reducir la velocidad cuando otro vehículo " +
+                "intente adelantarlo", 4);
+        Deber deber9 = new Deber(0, "Queda prohibido conducir vehículos motorizados cuando se tenga una cantidad de alcohol en la sangre " +
+                "superior a 0.8 gramos por litro o de alcohol en aire espirado superior a 0.4 miligramos por litro" +
+                " En incumplir esto, se sanciona con Arresto administrativo" +
+                " inconmutable de 20 a 36 horas y 6 puntos de penalizacion", 5);
 
-        articulos.addElement(articulo3);*/
+        deberes.addElement(deber1);
+        deberes.addElement(deber2);
+        deberes.addElement(deber3);
+        deberes.addElement(deber4);
+        deberes.addElement(deber5);
+        deberes.addElement(deber6);
+        deberes.addElement(deber7);
+        deberes.addElement(deber8);
+        deberes.addElement(deber9);
+    }
 
+    private void rellenaBeneficios()
+    {
+        Beneficios beneficio1 = new Beneficios(0, "Tienes garantizados tus derechos humanos por parte " +
+                "de las autoridades", 1);
+        Beneficios beneficio2 = new Beneficios(0, "No existe la esclavitud", 1);
+        Beneficios beneficio3 = new Beneficios(0, "No puedes ser discriminado", 1);
+        Beneficios beneficio4 = new Beneficios(0, "Educacion de calidad garantizada por el estado", 2);
+        Beneficios beneficio5 = new Beneficios(0, "Educacion gratuita", 2);
+        Beneficios beneficio6 = new Beneficios(0, "Nadie puede impedir a alguien ejercer su profesion", 3);
+        Beneficios beneficio7 = new Beneficios(0, "Tienen que pagar y retribuir de manera justa", 3);
+        Beneficios beneficio8 = new Beneficios(0, "Tienen que repestar el paso peatonal los conductores " +
+                "de caulquier vehiculo", 4);
+
+        beneficios.addElement(beneficio1);
+        beneficios.addElement(beneficio2);
+        beneficios.addElement(beneficio3);
+        beneficios.addElement(beneficio4);
+        beneficios.addElement(beneficio5);
+        beneficios.addElement(beneficio6);
+        beneficios.addElement(beneficio7);
+        beneficios.addElement(beneficio8);
     }
 }

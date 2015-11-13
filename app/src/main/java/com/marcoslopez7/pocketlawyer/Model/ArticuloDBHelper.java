@@ -9,7 +9,7 @@ package com.marcoslopez7.pocketlawyer.Model;
  */
 public class ArticuloDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "Articulos.db";
 
     public ArticuloDBHelper(Context context) {
