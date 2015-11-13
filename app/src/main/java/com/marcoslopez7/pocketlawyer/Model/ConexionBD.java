@@ -36,6 +36,7 @@ public final class ConexionBD {
     }
 
     //INSERTAR EN LA BASE DE DATOS
+    /*
     public void insertar(){
         bd.beginTransaction();
 
@@ -58,8 +59,9 @@ public final class ConexionBD {
 
 
     }
-
+*/
     //SELECT TODA LA TABLA, ESTO SE VA PARA LA FUNCION BUSCADOR
+    /*
     public Vector<ArticuloModelo> selectAllArticulos(){
         Cursor cursor = bd.query(
                 ArticuloReader.BD.TABLE_NAME,
@@ -84,8 +86,9 @@ public final class ConexionBD {
 
         return articulos;
     }
-
+*/
     private void rellenaArticulos(){
+        /*
         ArticuloModelo articulo1 = new ArticuloModelo(0, "Artículo 1o.", "En los Estados Unidos Mexicanos todas" +
                 " las personas gozarán de los derechos humanos reconocidos en esta Constitución y en los" +
                 " tratados internacionales de los que el Estado Mexicano sea parte, así como de las garantías " +
@@ -109,5 +112,6 @@ public final class ConexionBD {
                 "obligatorias.", "Constitucion", 2);
 
         articulos.addElement(articulo3);
+        */
     }
 }

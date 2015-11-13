@@ -9,20 +9,22 @@ package com.marcoslopez7.pocketlawyer.Model;
  */
 public class ArticuloDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "Articulos.db";
 
     public ArticuloDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(ArticuloReader.SQL_CREATE_ENTRIES);
+        db.execSQL(ArticuloReader.CREATE_TABLE_LEYES);
+        db.execSQL(ArticuloReader.CREATE_TABLE_ARTICULOS);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
-        db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES);
+        db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_LEYES);
+        db.execSQL(ArticuloReader.SQL_DELETE_ENTRIES_ARTICULOS);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

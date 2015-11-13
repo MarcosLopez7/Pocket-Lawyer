@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        test.insertar();
+        //test.insertar();
         test.close();
     }
 
