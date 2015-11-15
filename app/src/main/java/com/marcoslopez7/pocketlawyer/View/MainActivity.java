@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import com.marcoslopez7.pocketlawyer.Controller.ArticuloControlador;
 import com.marcoslopez7.pocketlawyer.Model.ConexionBD;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArticuloControlador articulo;
     private ConexionBD test;
+    private EditText campoBusqueda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
         }
         test.insertar();
         test.close();
+        init();
     }
 
+    private void init(){
+        campoBusqueda = (EditText)findViewById(R.id.ET_campoBusqueda);
+    }
+
+    public void Buscar(View view){
+        // Algoritmo de busqueda
+        String buscar = campoBusqueda.getText().toString();
+    }
 
 }
