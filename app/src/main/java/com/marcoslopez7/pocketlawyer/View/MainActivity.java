@@ -6,6 +6,7 @@
 
 package com.marcoslopez7.pocketlawyer.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,6 +48,27 @@ public class MainActivity extends AppCompatActivity {
     public void Buscar(View view){
         // Algoritmo de busqueda
         String buscar = campoBusqueda.getText().toString();
+    }
+
+    public void abrirLista(View view){
+        Intent intent = new Intent(this,ListaArticulosActivity.class);
+        int categoria;
+        switch (view.getId()) {
+            case R.id.b_transito:
+                categoria = 1;
+                break;
+            case R.id.b_fiestas:
+                categoria = 2;
+                break;
+            case R.id.b_propiedad:
+                categoria = 3;
+                break;
+            default:
+                categoria = 0;
+                break;
+        }
+        intent.putExtra("CATEGORIA", categoria);
+        startActivity(intent);
     }
 
 }
