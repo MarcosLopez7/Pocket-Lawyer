@@ -46,20 +46,50 @@ public class Buscador {
             e.printStackTrace();
         }
 
-        if (keyword.length() >= 4) {
+        if (keyword.length() >= 4)
+        {
+            double porcent;
+            int matches = 0;
             Vector<ArticuloModelo> articulos_query = bd.selectAllArticulos();
             boolean porcentaje_minimo = false;
 
             for (int i = 0; i < articulos_query.size(); i++){
                 for (int j = 0; j < articulos_query.elementAt(i).getResumen().length(); j++)
                 {
+                    int M = keyword.length();
+                    int N = articulos_query.elementAt(i).getResumen().length();
+                    int x, y;
 
+                    for (x = 0, y = 0; x < N && y < M; ++x)
+                    {
+                        if(articulos_query.elementAt(i).getResumen().charAt(x) == keyword.charAt(y))
+                        {
+                            y++;
+                            matches++;
+                        }
+                        else
+                        {
+                            x -= y;
+                            y = 0;
+                        }
+                    }
+                    if(y == M) {
+                        if (articulos_query.elementAt(x).getResumen().charAt(x) != keyword.charAt(j))
+                        {
+                            porcent = (double) (matches / keyword.length() * 100);
+                            if (porcent >= 75)
+                                articulos.add(articulos_query.elementAt(x - M));
+                        }
+                    }
+                    else
+                    {
+                        porcent = 100.0;
+                    }
                 }
             }
-
         }
-        bd.close();
 
+        bd.close();
         return  articulos;
     }
 }
