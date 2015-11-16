@@ -33,12 +33,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        test = new ConexionBD(MainActivity.this);
+        articulo = ArticuloControlador.getInstance(MainActivity.this);
+
+        /*
+        DESCOMENTAR ESTAS LINEAS SI SE NECESITA HACER INSERCION DE DATOS, SIEMPRE SE HACE EN LA PRIMERA
+        INSTALACION Y PRUEBA DE LA APP, AL TERMINAR VOLVER A COMENTARLAS
+
+        test = ConexionBD.getInstance(MainActivity.this);
         try {
             test.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        test.insertat();
         Vector<ArticuloModelo> articulos = new Vector<>();
 
         articulos = test.selectAllArticulos();
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         test.close();
+        */
         init();
     }
 

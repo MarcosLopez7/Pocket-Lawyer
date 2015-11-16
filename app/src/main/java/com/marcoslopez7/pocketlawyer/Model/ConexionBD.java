@@ -22,7 +22,10 @@ public final class ConexionBD {
     private ArticuloDBHelper dbHelper;
     private SQLiteDatabase bd;
 
-    public ConexionBD(Context context){
+    //ESTA VARIABLE ES PARA USAR EL SINGLETON
+    private static ConexionBD instance = null;
+
+    private ConexionBD(Context context){
         dbHelper = new ArticuloDBHelper(context);
         articulos = new Vector<>();
         leyes = new Vector<>();
@@ -33,6 +36,17 @@ public final class ConexionBD {
         rellenaDeberes();
         rellenaBeneficios();
     }
+
+    public static ConexionBD getInstance(Context context)
+    {
+        if (instance == null)
+        {
+            instance = new ConexionBD(context);
+        }
+
+        return instance;
+    }
+
 
     //ABRIR BASE DE DATOS
     public void open() throws SQLException {
@@ -104,10 +118,12 @@ public final class ConexionBD {
     public Vector<ArticuloModelo> selectAllArticulos(){
         Cursor cursor = bd.query(
                 ArticuloReader.BD.TABLE_NAME_ARTICULOS,
-                new String[]{ ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO,
+                new String[]{ ArticuloReader.BD._ID_ARTICULO,
+                        ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO,
                               ArticuloReader.BD.COLUMN_NAME_RESUMEN,
                               ArticuloReader.BD.COLUMN_NAME_CATEGORIA,
-                              ArticuloReader.BD.COLUMN_NAME_PRIORIDAD},
+                              ArticuloReader.BD.COLUMN_NAME_PRIORIDAD,
+                                ArticuloReader.BD.COLUMN_NAME_ID_LEY_F},
                 null, //CLAUSULA WHERE
                 null, // PARAMETRO WHERE
                 null, // GROUPBY
@@ -121,10 +137,12 @@ public final class ConexionBD {
 
         while (!cursor.isAfterLast()){
             ArticuloModelo articulo_temporal = new ArticuloModelo();
+            articulo_temporal.setId(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO)));
             articulo_temporal.setTitulo(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO)));
             articulo_temporal.setResumen(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_RESUMEN)));
             articulo_temporal.setCategoria(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_CATEGORIA)));
             articulo_temporal.setPrioridad(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD)));
+            articulo_temporal.setId_ley(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_ID_LEY_F)));
 
             nuevos_articulos.addElement(articulo_temporal);
             cursor.moveToNext();
