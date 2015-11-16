@@ -9,16 +9,19 @@ package com.marcoslopez7.pocketlawyer.View;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import com.marcoslopez7.pocketlawyer.Controller.ArticuloControlador;
+import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 import com.marcoslopez7.pocketlawyer.Model.ConexionBD;
 import com.marcoslopez7.pocketlawyer.R;
 
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +39,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        test.insertar();
+        Vector<ArticuloModelo> articulos = new Vector<>();
+
+        articulos = test.selectAllArticulos();
+
+        for (int i = 0; i < articulos.size(); i++){
+            Log.d("Articles", articulos.elementAt(i).getTitulo());
+        }
+
         test.close();
         init();
     }

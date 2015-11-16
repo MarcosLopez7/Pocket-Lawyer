@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Pocket-Lawyer.iml" filepath="$PROJECT_DIR$/Pocket-Lawyer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Pocket-Lawyer.iml" filepath="$PROJECT_DIR$/Pocket-Lawyer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PocketLawyer.iml" filepath="$PROJECT_DIR$/PocketLawyer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

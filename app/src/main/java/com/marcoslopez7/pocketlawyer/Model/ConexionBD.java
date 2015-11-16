@@ -31,6 +31,7 @@ public final class ConexionBD {
         rellenaLeyes();
         rellenaArticulos();
         rellenaDeberes();
+        rellenaBeneficios();
     }
 
     //ABRIR BASE DE DATOS
@@ -99,12 +100,12 @@ public final class ConexionBD {
     }
 
     //SELECT TODA LA TABLA, ESTO SE VA PARA LA FUNCION BUSCADOR
-    /*
+
     public Vector<ArticuloModelo> selectAllArticulos(){
         Cursor cursor = bd.query(
-                ArticuloReader.BD.TABLE_NAME,
-                new String[]{ ArticuloReader.BD.COLUMN_NAME_TITULO,
-                              ArticuloReader.BD.COLUMN_NAME_TEXTO,
+                ArticuloReader.BD.TABLE_NAME_ARTICULOS,
+                new String[]{ ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO,
+                              ArticuloReader.BD.COLUMN_NAME_RESUMEN,
                               ArticuloReader.BD.COLUMN_NAME_CATEGORIA,
                               ArticuloReader.BD.COLUMN_NAME_PRIORIDAD},
                 null, //CLAUSULA WHERE
@@ -114,17 +115,23 @@ public final class ConexionBD {
                 null // ORDERBY
         );
 
-        Vector<ArticuloModelo> articulos = new Vector<ArticuloModelo>();
+        Vector<ArticuloModelo> nuevos_articulos = new Vector<>();
 
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()){
-            int i = cursor.getColumnIndex(ArticuloReader.BD._ID);
+            ArticuloModelo articulo_temporal = new ArticuloModelo();
+            articulo_temporal.setTitulo(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO)));
+            articulo_temporal.setResumen(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_RESUMEN)));
+            articulo_temporal.setCategoria(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_CATEGORIA)));
+            articulo_temporal.setPrioridad(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD)));
+
+            nuevos_articulos.addElement(articulo_temporal);
+            cursor.moveToNext();
         }
 
-        return articulos;
+        return nuevos_articulos;
     }
-*/
     private void rellenaLeyes(){
 
         Ley ley1 = new Ley(0, "Constitucion de los Estados Unidos Mexicanos", "2015-07-10", 136, "http://www.diputados.gob.mx/LeyesBiblio/htm/1.htm");

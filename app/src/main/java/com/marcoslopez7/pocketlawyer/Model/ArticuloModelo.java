@@ -21,7 +21,14 @@ public class ArticuloModelo {
     private int id_ley;
     private int prioridad;
 
-
+    public ArticuloModelo(){
+        this.id = 0;
+        this.titulo = "";
+        this.categoria = "";
+        this.prioridad = 0;
+        this.resumen = "";
+        this.id_ley = 0;
+    }
 
     public ArticuloModelo(int id, String titulo, String categoria, int prioridad, String resumen,
                           int id_ley){
