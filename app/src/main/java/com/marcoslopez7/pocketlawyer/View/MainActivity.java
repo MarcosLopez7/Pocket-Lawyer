@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.marcoslopez7.pocketlawyer.Controller.ArticuloControlador;
 import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
@@ -66,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
     public void Buscar(View view){
         // Algoritmo de busqueda
         String buscar = campoBusqueda.getText().toString();
+        Vector<ArticuloModelo> articulos = articulo.buscar(buscar, this);
+        if(articulos != null) {
+            for (int i = 0; i < articulos.size(); i++) {
+                Log.d("Articles", articulos.elementAt(i).getTitulo());
+            }
+        }else
+            Toast.makeText(this, "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
     }
 
     public void abrirLista(View view){

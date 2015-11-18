@@ -8,12 +8,14 @@ package com.marcoslopez7.pocketlawyer.Model;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.marcoslopez7.pocketlawyer.Patrones.Prototype;
+
 import java.sql.SQLException;
 
 /**
  * Created by Marcos L on 11/11/2015.
  */
-public class ArticuloModelo {
+public class ArticuloModelo implements Prototype{
     private int id;
     private String titulo;
     private String resumen;
@@ -88,5 +90,17 @@ public class ArticuloModelo {
         this.prioridad = prioridad;
     }
 
+    public Prototype makeCopy(){
+        ArticuloModelo objeto = null;
+
+        try {
+                objeto = (ArticuloModelo) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return objeto;
+    }
 
 }

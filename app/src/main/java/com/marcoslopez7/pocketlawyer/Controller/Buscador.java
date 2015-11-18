@@ -1,6 +1,7 @@
 package com.marcoslopez7.pocketlawyer.Controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 import com.marcoslopez7.pocketlawyer.Model.ConexionBD;
@@ -48,48 +49,47 @@ public class Buscador {
 
         if (keyword.length() >= 4)
         {
-            double porcent;
-            int matches = 0;
+
             Vector<ArticuloModelo> articulos_query = bd.selectAllArticulos();
-            boolean porcentaje_minimo = false;
+            String keyword_low = keyword.toLowerCase();
 
             for (int i = 0; i < articulos_query.size(); i++){
-                for (int j = 0; j < articulos_query.elementAt(i).getResumen().length(); j++)
-                {
-                    int M = keyword.length();
-                    int N = articulos_query.elementAt(i).getResumen().length();
-                    int x, y;
+                boolean porcentaje_minimo = false;
+                String articulo_resumen = articulos_query.elementAt(i).getResumen().toLowerCase();
+                int word_matches = 0;
 
-                    for (x = 0, y = 0; x < N && y < M; ++x)
-                    {
-                        if(articulos_query.elementAt(i).getResumen().charAt(x) == keyword.charAt(y))
+                for (int j = 0; j < articulo_resumen.length(); j++)
+                {
+                    int matches = 0;
+                    int k = 0;
+                    while (articulo_resumen.charAt(j) == keyword_low.charAt(k)){
+                        matches++;
+                        j++;
+                        k++;
+
+                        if (matches/keyword_low.length() * 100 >= 75)
                         {
-                            y++;
-                            matches++;
+                            porcentaje_minimo = true;
+                            word_matches++;
+                            break;
                         }
-                        else
-                        {
-                            x -= y;
-                            y = 0;
-                        }
-                    }
-                    if(y == M) {
-                        if (articulos_query.elementAt(x).getResumen().charAt(x) != keyword.charAt(j))
-                        {
-                            porcent = (double) (matches / keyword.length() * 100);
-                            if (porcent >= 75)
-                                articulos.add(articulos_query.elementAt(x - M));
-                        }
-                    }
-                    else
-                    {
-                        porcent = 100.0;
                     }
                 }
+
+                if (porcentaje_minimo){
+                    ArticuloModelo articulo = (ArticuloModelo)articulos_query.elementAt(i).makeCopy();
+                    articulo.setPrioridad(word_matches);
+                    articulos.addElement(articulo);
+                }
             }
-        }
+        }else
+            return null;
 
         bd.close();
-        return  articulos;
+
+        if (!articulos.isEmpty())
+            return  articulos;
+        else
+            return null;
     }
 }
