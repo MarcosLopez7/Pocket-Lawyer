@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:background="#f9d34c">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titulo Articulo"
+        android:id="@+id/titulo_articulo"
+        android:textSize="22sp"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titulo Ley"
+        android:id="@+id/titulo_ley"
+        android:textColor="#ffffffff"
+        android:textSize="18sp"
+        android:layout_marginTop="5sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Limites de los niveles de alcohol en conductores de vehiculos motorizados"
+        android:id="@+id/resumen_articulo"
+        android:textSize="16sp"
+        android:textColor="#ccffffff"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

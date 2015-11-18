@@ -7,12 +7,11 @@
     tools:context="com.marcoslopez7.pocketlawyer.View.ListaArticulosActivity"
     android:background="@drawable/gradient">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:id="@+id/lv_querys"
+        android:scrollbars="vertical"></ListView>
 
-    </LinearLayout>
+
 </RelativeLayout>

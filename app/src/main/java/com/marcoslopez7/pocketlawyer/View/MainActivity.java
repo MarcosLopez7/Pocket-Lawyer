@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < articulos.size(); i++) {
                 Log.d("Articles", articulos.elementAt(i).getTitulo());
             }
+            Intent intent = new Intent(this, ListaArticulosActivity.class);
+            intent.putExtra("Art", articulos);
         }else
             Toast.makeText(this, "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
     }
