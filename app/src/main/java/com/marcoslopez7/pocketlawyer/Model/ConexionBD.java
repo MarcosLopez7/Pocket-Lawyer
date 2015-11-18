@@ -131,6 +131,31 @@ public final class ConexionBD {
                 null // ORDERBY
         );
 
+        return ponerAlCursor(cursor);
+    }
+
+
+
+    public Vector<ArticuloModelo> selectArticulosByCategoria(String categoria){
+        Cursor cursor = bd.query(
+                ArticuloReader.BD.TABLE_NAME_ARTICULOS,
+                new String[]{ ArticuloReader.BD._ID_ARTICULO,
+                        ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO,
+                        ArticuloReader.BD.COLUMN_NAME_RESUMEN,
+                        ArticuloReader.BD.COLUMN_NAME_CATEGORIA,
+                        ArticuloReader.BD.COLUMN_NAME_PRIORIDAD,
+                        ArticuloReader.BD.COLUMN_NAME_ID_LEY_F},
+                ArticuloReader.BD.COLUMN_NAME_CATEGORIA + " = " + categoria, //CLAUSULA WHERE
+                null, // PARAMETRO WHERE
+                null, // GROUPBY
+                null, // HAVING
+                null // ORDERBY
+        );
+
+        return ponerAlCursor(cursor);
+    }
+
+    private Vector<ArticuloModelo> ponerAlCursor(Cursor cursor){
         Vector<ArticuloModelo> nuevos_articulos = new Vector<>();
 
         cursor.moveToFirst();
@@ -150,6 +175,8 @@ public final class ConexionBD {
 
         return nuevos_articulos;
     }
+
+
     private void rellenaLeyes(){
 
         Ley ley1 = new Ley(0, "Constitucion de los Estados Unidos Mexicanos", "2015-07-10", 136, "http://www.diputados.gob.mx/LeyesBiblio/htm/1.htm");

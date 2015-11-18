@@ -54,4 +54,8 @@ public class ArticuloControlador {
         return buscador.search();
     }
 
+    public Vector<ArticuloModelo> selectArticuloByCategoria(String categoria){
+        return conexion.selectArticulosByCategoria(categoria);
+    }
+
 }

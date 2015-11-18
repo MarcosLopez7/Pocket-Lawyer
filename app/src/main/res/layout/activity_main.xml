@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@drawable/gradient">
 
     <EditText
         android:layout_width="wrap_content"
@@ -23,7 +24,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="Buscar"/>
+        android:onClick="Buscar"
+        android:background="#40ffffff"
+        android:textColor="#ffffffff" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -39,7 +42,9 @@
             android:id="@+id/b_transito"
             android:layout_row="0"
             android:layout_column="0"
-            android:onClick="abrirLista"/>
+            android:onClick="abrirLista"
+            android:background="#40ffffff"
+            android:textColor="#ffffffff" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +52,9 @@
             android:id="@+id/b_fiestas"
             android:layout_column="1"
             android:layout_row="0"
-            android:onClick="abrirLista"/>
+            android:onClick="abrirLista"
+            android:background="#40ffffff"
+            android:textColor="#ffffffff" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +62,9 @@
             android:id="@+id/b_propiedad"
             android:layout_column="2"
             android:layout_row="0"
-            android:onClick="abrirLista"/>
+            android:onClick="abrirLista"
+            android:background="#40ffffff"
+            android:textColor="#ffffffff" />
     </GridLayout>
 
 </RelativeLayout>
