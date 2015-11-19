@@ -8,8 +8,12 @@ import android.database.Cursor;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -30,25 +34,13 @@ public class ListaArticulosActivity extends AppCompatActivity /*implements Loade
 
     private ListView lv;
     private ListAdapter lista_adaptador;
-    /*
-    private int categoria;
-    private ArrayList q;
-
-    SimpleCursorAdapter adapter;
-
-    static final String[] PROJECTION = new String[]{
-            ArticuloReader.BD._ID_ARTICULO, ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO
-    };
-
-    static String[] SELECTION;
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_articulos);
         lv = (ListView)findViewById(R.id.lv_querys);
-        lista_adaptador = new ListAdapter(getApplicationContext(), R.layout.list_articulos);
+        lista_adaptador = new ListAdapter(this, R.layout.list_articulos);
 
         lv.setAdapter(lista_adaptador);
         ArticuloModelo[] articulos;
@@ -59,39 +51,29 @@ public class ListaArticulosActivity extends AppCompatActivity /*implements Loade
 
         for (int i = 0; i < articulos.length; i++)
             lista_adaptador.add(articulos[i]);
-        /*
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        setContentView(R.layout.activity_lista_articulos);
-        if(bundle != null){
-            q = (ArrayList<ArticuloModelo>)bundle.getSerializable("Art");
-        }
 
-        lv = (ListView)findViewById(R.id.lv_querys);
-        String[] fromCol = {ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO};
-        int[] toViews = {android.R.id.text1};
-
-        adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, null, fromCol, toViews, 0);
-        lv.setAdapter(adapter);
-        getLoaderManager().initLoader(0, null, this);
-        */
-    }
-
-/*
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-       // return new CursorLoader(this, );
-        return null;
+        registerForContextMenu(lv);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_lista_articulos, menu);
+
 
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
+
+
+        return super.onContextItemSelected(item);
     }
-    */
+
+
 }

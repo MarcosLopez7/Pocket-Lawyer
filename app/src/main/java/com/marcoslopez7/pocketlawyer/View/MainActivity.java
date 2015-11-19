@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        articulo = ArticuloControlador.getInstance(MainActivity.this);
+        articulo = ArticuloControlador.getInstance(getApplicationContext());
 
         /*
         DESCOMENTAR ESTAS LINEAS SI SE NECESITA HACER INSERCION DE DATOS, SIEMPRE SE HACE EN LA PRIMERA
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void Buscar(View view){
         // Algoritmo de busqueda
         String buscar = campoBusqueda.getText().toString();
-        Vector<ArticuloModelo> articulos = articulo.buscar(buscar, this);
+        Vector<ArticuloModelo> articulos = articulo.buscar(buscar, getApplicationContext());
         ArticuloModelo[] art;
         if(articulos != null) {
             art = new ArticuloModelo[articulos.size()];

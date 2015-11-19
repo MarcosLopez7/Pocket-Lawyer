@@ -155,6 +155,95 @@ public final class ConexionBD {
         return ponerAlCursor(cursor);
     }
 
+    public ArticuloModelo selectArticuloById(int id){
+        Cursor cursor = bd.query(
+                ArticuloReader.BD.TABLE_NAME_ARTICULOS,
+                new String[]{ ArticuloReader.BD._ID_ARTICULO,
+                        ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO,
+                        ArticuloReader.BD.COLUMN_NAME_RESUMEN,
+                        ArticuloReader.BD.COLUMN_NAME_CATEGORIA,
+                        ArticuloReader.BD.COLUMN_NAME_PRIORIDAD,
+                        ArticuloReader.BD.COLUMN_NAME_ID_LEY_F},
+                ArticuloReader.BD._ID_ARTICULO + " = " + id, //CLAUSULA WHERE
+                null, // PARAMETRO WHERE
+                null, // GROUPBY
+                null, // HAVING
+                null // ORDERBY
+        );
+
+        cursor.moveToFirst();
+
+        ArticuloModelo articulo_temporal = new ArticuloModelo();
+        articulo_temporal.setId(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO)));
+        articulo_temporal.setTitulo(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO)));
+        articulo_temporal.setResumen(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_RESUMEN)));
+        articulo_temporal.setCategoria(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_CATEGORIA)));
+        articulo_temporal.setPrioridad(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD)));
+        articulo_temporal.setId_ley(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_ID_LEY_F)));
+
+        return articulo_temporal;
+    }
+
+    public Vector<Beneficios> selectBeneficiosByIdArticulo(int id_articulo){
+        Cursor cursor = bd.query(
+                ArticuloReader.BD.TABLE_NAME_BENEFICIOS,
+                new String[]{ ArticuloReader.BD._ID_BEN_DED,
+                        ArticuloReader.BD.COLUMN_NAME_TEXTO,
+                        ArticuloReader.BD._ID_ARTICULO_F},
+                ArticuloReader.BD._ID_ARTICULO_F + " = " + id_articulo, //CLAUSULA WHERE
+                null, // PARAMETRO WHERE
+                null, // GROUPBY
+                null, // HAVING
+                null // ORDERBY
+        );
+
+        Vector<Beneficios> nuevos_beneficios = new Vector<>();
+
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()){
+            Beneficios beneficio_temporal = new Beneficios();
+            beneficio_temporal.setId(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_BEN_DED)));
+            beneficio_temporal.setTexto(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TEXTO)));
+            beneficio_temporal.setId_articulo(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO_F)));
+
+            nuevos_beneficios.addElement(beneficio_temporal);
+            cursor.moveToNext();
+        }
+
+        return nuevos_beneficios;
+    }
+
+    public Vector<Deber> selectDeberesByArticuloId(int id_articulo){
+        Cursor cursor = bd.query(
+                ArticuloReader.BD.TABLE_NAME_DEBERES,
+                new String[]{ ArticuloReader.BD._ID_BEN_DED,
+                        ArticuloReader.BD.COLUMN_NAME_TEXTO,
+                        ArticuloReader.BD._ID_ARTICULO_F},
+                ArticuloReader.BD._ID_ARTICULO_F + " = " + id_articulo, //CLAUSULA WHERE
+                null, // PARAMETRO WHERE
+                null, // GROUPBY
+                null, // HAVING
+                null // ORDERBY
+        );
+
+        Vector<Deber> nuevos_deberes = new Vector<>();
+
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()){
+            Deber deber_temporal = new Deber();
+            deber_temporal.setId(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_BEN_DED)));
+            deber_temporal.setTexto(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TEXTO)));
+            deber_temporal.setId_articulo(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO_F)));
+
+            nuevos_deberes.addElement(deber_temporal);
+            cursor.moveToNext();
+        }
+
+        return nuevos_deberes;
+    }
+
     private Vector<ArticuloModelo> ponerAlCursor(Cursor cursor){
         Vector<ArticuloModelo> nuevos_articulos = new Vector<>();
 

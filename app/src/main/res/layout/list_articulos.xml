@@ -3,19 +3,34 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content" android:background="#f9d34c">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Titulo Articulo"
-        android:id="@+id/titulo_articulo"
-        android:textSize="22sp"
-        android:textColor="#ffffffff" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo Articulo"
+            android:id="@+id/titulo_articulo"
+            android:textSize="22sp"
+            android:textColor="#ffffffff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ir a Articulo"
+            android:id="@+id/boton_articulo"
+            android:layout_marginLeft="120dp"
+            android:background="#40ffffff"
+            android:textColor="#f25019" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Titulo Ley"
-        android:id="@+id/titulo_ley"
+        android:id="@+id/titulo_ley_grande"
         android:textColor="#ffffffff"
         android:textSize="18sp"
         android:layout_marginTop="5sp" />

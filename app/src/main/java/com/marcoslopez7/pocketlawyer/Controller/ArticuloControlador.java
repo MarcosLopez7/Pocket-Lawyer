@@ -9,6 +9,7 @@ import android.content.Context;
 import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 import com.marcoslopez7.pocketlawyer.Model.ConexionBD;
 
+import java.sql.SQLException;
 import java.util.Vector;
 
 /**
@@ -38,7 +39,15 @@ public class ArticuloControlador {
     }
 
     public ArticuloModelo getArticuloById(int id){
-        return articulo;
+        try {
+            conexion.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ArticuloModelo art = conexion.selectArticuloById(id);
+        conexion.close();
+        return art;
+
     }
 
     public ArticuloModelo getArticuloByCategoria(String categoria){
