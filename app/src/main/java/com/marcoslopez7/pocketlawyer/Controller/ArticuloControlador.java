@@ -64,7 +64,14 @@ public class ArticuloControlador {
     }
 
     public Vector<ArticuloModelo> selectArticuloByCategoria(String categoria){
-        return conexion.selectArticulosByCategoria(categoria);
+        try {
+            conexion.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Vector<ArticuloModelo> v = conexion.selectArticulosByCategoria(categoria);
+        conexion.close();
+        return v;
     }
 
 }

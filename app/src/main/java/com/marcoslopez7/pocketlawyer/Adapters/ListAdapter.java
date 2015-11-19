@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.marcoslopez7.pocketlawyer.Controller.LeyControlador;
 import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 import com.marcoslopez7.pocketlawyer.R;
 import com.marcoslopez7.pocketlawyer.View.ArticuloActivity;
@@ -23,10 +24,12 @@ import java.util.List;
 public class ListAdapter extends ArrayAdapter{
     private List lista = new ArrayList();
     private Context context;
+    private LeyControlador leyControlador;
 
     public ListAdapter(Context context, int resource) {
         super(context, resource);
         this.context = context;
+        leyControlador = LeyControlador.getInstance(context);
     }
 
     public ListAdapter(Context context, int resource, int textViewResourceId) {
@@ -87,7 +90,7 @@ public class ListAdapter extends ArrayAdapter{
 
         final ArticuloModelo articulo = (ArticuloModelo)this.getItem(position);
         layoutHandler.titulo.setText(articulo.getTitulo());
-        layoutHandler.tituloLey.setText(articulo.getId_ley() + "");
+        layoutHandler.tituloLey.setText(leyControlador.findLeyById(articulo.getId_ley()).getTitulo());
         layoutHandler.resumen.setText(articulo.getResumen());
         layoutHandler.boton.setOnClickListener(new View.OnClickListener() {
             @Override

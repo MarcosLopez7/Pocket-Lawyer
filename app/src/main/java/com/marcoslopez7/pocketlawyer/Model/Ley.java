@@ -1,9 +1,11 @@
 package com.marcoslopez7.pocketlawyer.Model;
 
+import com.marcoslopez7.pocketlawyer.Patrones.Prototype;
+
 /**
  * Created by Marcos L on 13/11/2015.
  */
-public class Ley {
+public class Ley implements Prototype {
     private int id;
     private String titulo;
     private String fecha_ultima_modificacion;
@@ -16,6 +18,14 @@ public class Ley {
         this.fecha_ultima_modificacion = fecha_ultima_modificacion;
         this.numero_articulos = numero_articulos;
         this.link = link;
+    }
+
+    public Ley(){
+        this.id = 0;
+        this.titulo = "";
+        this.fecha_ultima_modificacion = "";
+        this.numero_articulos = 0;
+        this.link = "";
     }
 
     public int getId() {
@@ -56,5 +66,19 @@ public class Ley {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    @Override
+    public Prototype makeCopy() {
+        Ley objeto = null;
+
+        try {
+            objeto = (Ley) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return objeto;
     }
 }

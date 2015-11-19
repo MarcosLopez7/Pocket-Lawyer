@@ -13,6 +13,7 @@ import com.marcoslopez7.pocketlawyer.Adapters.ListAdapterDerechos;
 import com.marcoslopez7.pocketlawyer.Controller.ArticuloControlador;
 import com.marcoslopez7.pocketlawyer.Controller.BeneficioControlador;
 import com.marcoslopez7.pocketlawyer.Controller.DeberControlador;
+import com.marcoslopez7.pocketlawyer.Controller.LeyControlador;
 import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 import com.marcoslopez7.pocketlawyer.Model.Beneficios;
 import com.marcoslopez7.pocketlawyer.Model.Deber;
@@ -36,6 +37,7 @@ public class ArticuloActivity extends AppCompatActivity {
     private ArticuloModelo articulo;
     private DeberControlador deberControlador;
     private BeneficioControlador beneficioControlador;
+    private LeyControlador leyControlador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class ArticuloActivity extends AppCompatActivity {
         controlador = ArticuloControlador.getInstance(getApplicationContext());
         deberControlador = DeberControlador.getInstance(getApplicationContext());
         beneficioControlador = BeneficioControlador.getInstance(getApplicationContext());
+        leyControlador = LeyControlador.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
         int id_articulo = intent.getIntExtra("id_Articulo", 0);
@@ -62,7 +65,7 @@ public class ArticuloActivity extends AppCompatActivity {
         articulo = controlador.getArticuloById(id_articulo);
 
         titulo.setText(articulo.getTitulo());
-        titulo_ley.setText(articulo.getId_ley() + "");
+        titulo_ley.setText(leyControlador.findLeyById(articulo.getId_ley()).getTitulo());
         resumen.setText(articulo.getResumen());
 
         Vector<Beneficios> beneficios = beneficioControlador.findBeneficiosByIdArticulo(articulo.getId());

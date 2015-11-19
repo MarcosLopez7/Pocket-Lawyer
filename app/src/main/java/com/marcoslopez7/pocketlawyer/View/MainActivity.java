@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArticuloControlador articulo;
     private ConexionBD test;
     private EditText campoBusqueda;
+    private Button trbajo, transito, propiedad, constitucion, educacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,109 @@ public class MainActivity extends AppCompatActivity {
         test.close();
         */
         init();
+        trbajo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<ArticuloModelo> articulos = articulo.selectArticuloByCategoria("Trabajo");
+                ArticuloModelo[] art;
+                if (articulos != null) {
+                    art = new ArticuloModelo[articulos.size()];
+                    for (int i = 0; i < articulos.size(); i++) {
+                        art[i] = (ArticuloModelo) articulos.elementAt(i).makeCopy();
+                    }
+
+                    Intent intent = new Intent(getApplicationContext(), ListaArticulosActivity.class);
+                    intent.putExtra("Art", art);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        transito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<ArticuloModelo> articulos = articulo.selectArticuloByCategoria("Transito");
+                ArticuloModelo[] art;
+                if (articulos != null) {
+                    art = new ArticuloModelo[articulos.size()];
+                    for (int i = 0; i < articulos.size(); i++) {
+                        art[i] = (ArticuloModelo) articulos.elementAt(i).makeCopy();
+                    }
+
+                    Intent intent = new Intent(getApplicationContext(), ListaArticulosActivity.class);
+                    intent.putExtra("Art", art);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        propiedad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<ArticuloModelo> articulos = articulo.selectArticuloByCategoria("Propiedad");
+                ArticuloModelo[] art;
+                if (articulos != null) {
+                    art = new ArticuloModelo[articulos.size()];
+                    for (int i = 0; i < articulos.size(); i++) {
+                        art[i] = (ArticuloModelo) articulos.elementAt(i).makeCopy();
+                    }
+
+                    Intent intent = new Intent(getApplicationContext(), ListaArticulosActivity.class);
+                    intent.putExtra("Art", art);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        constitucion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<ArticuloModelo> articulos = articulo.selectArticuloByCategoria("Derechos Humanos");
+                ArticuloModelo[] art;
+                if (articulos != null) {
+                    art = new ArticuloModelo[articulos.size()];
+                    for (int i = 0; i < articulos.size(); i++) {
+                        art[i] = (ArticuloModelo) articulos.elementAt(i).makeCopy();
+                    }
+
+                    Intent intent = new Intent(getApplicationContext(), ListaArticulosActivity.class);
+                    intent.putExtra("Art", art);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        educacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<ArticuloModelo> articulos = articulo.selectArticuloByCategoria("Educacion");
+                ArticuloModelo[] art;
+                if (articulos != null) {
+                    art = new ArticuloModelo[articulos.size()];
+                    for (int i = 0; i < articulos.size(); i++) {
+                        art[i] = (ArticuloModelo) articulos.elementAt(i).makeCopy();
+                    }
+
+                    Intent intent = new Intent(getApplicationContext(), ListaArticulosActivity.class);
+                    intent.putExtra("Art", art);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void init(){
         campoBusqueda = (EditText)findViewById(R.id.ET_campoBusqueda);
+        trbajo = (Button)findViewById(R.id.b_fiestas);
+        transito = (Button)findViewById(R.id.b_transito);
+        propiedad = (Button)findViewById(R.id.b_propiedad);
+        constitucion = (Button)findViewById(R.id.b_constitucion);
+        educacion = (Button) findViewById(R.id.b_educacion);
     }
 
     public void Buscar(View view){
@@ -82,25 +183,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
     }
 
-    public void abrirLista(View view){
-        Intent intent = new Intent(this,ListaArticulosActivity.class);
-        int categoria;
-        switch (view.getId()) {
-            case R.id.b_transito:
-                categoria = 1;
-                break;
-            case R.id.b_fiestas:
-                categoria = 2;
-                break;
-            case R.id.b_propiedad:
-                categoria = 3;
-                break;
-            default:
-                categoria = 0;
-                break;
-        }
-        intent.putExtra("CATEGORIA", categoria);
-        startActivity(intent);
-    }
+
 
 }

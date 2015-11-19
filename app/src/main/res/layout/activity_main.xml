@@ -14,7 +14,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/b_buscar"
-        android:layout_toStartOf="@+id/b_buscar" />
+        android:layout_toStartOf="@+id/b_buscar"
+        android:hint="Escribe la palabra a buscar" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,43 +29,98 @@
         android:background="#40ffffff"
         android:textColor="#ffffffff" />
 
-    <GridLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/b_buscar">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp">
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tránsito"
-            android:id="@+id/b_transito"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:onClick="abrirLista"
-            android:background="#40ffffff"
-            android:textColor="#ffffffff" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fiestas"
-            android:id="@+id/b_fiestas"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:onClick="abrirLista"
-            android:background="#40ffffff"
-            android:textColor="#ffffffff" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Propiedad"
-            android:id="@+id/b_propiedad"
-            android:layout_column="2"
-            android:layout_row="0"
-            android:onClick="abrirLista"
-            android:background="#40ffffff"
-            android:textColor="#ffffffff" />
-    </GridLayout>
+            android:layout_below="@+id/b_buscar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Propiedad"
+                android:id="@+id/b_propiedad"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:onClick="abrirLista"
+                android:background="#40ffffff"
+                android:textColor="#ffffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trabajo"
+                android:id="@+id/b_fiestas"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:onClick="abrirLista"
+                android:background="#40ffffff"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tránsito"
+                android:id="@+id/b_transito"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:onClick="abrirLista"
+                android:background="#40ffffff"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Constitucion"
+                android:id="@+id/b_constitucion"
+                android:background="#40ffffff"
+                android:textColor="#ffffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Educacion"
+                android:id="@+id/b_educacion"
+                android:background="#40ffffff"
+                android:textColor="#ffffffff"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
