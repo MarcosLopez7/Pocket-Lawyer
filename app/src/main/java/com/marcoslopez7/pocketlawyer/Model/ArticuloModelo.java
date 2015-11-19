@@ -7,6 +7,8 @@ package com.marcoslopez7.pocketlawyer.Model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.marcoslopez7.pocketlawyer.Patrones.Prototype;
 
@@ -15,7 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by Marcos L on 11/11/2015.
  */
-public class ArticuloModelo implements Prototype{
+public class ArticuloModelo implements Prototype, Parcelable {
     private int id;
     private String titulo;
     private String resumen;
@@ -41,6 +43,27 @@ public class ArticuloModelo implements Prototype{
         this.resumen = resumen;
         this.id_ley = id_ley;
     }
+
+    protected ArticuloModelo(Parcel in) {
+        id = in.readInt();
+        titulo = in.readString();
+        resumen = in.readString();
+        categoria = in.readString();
+        id_ley = in.readInt();
+        prioridad = in.readInt();
+    }
+
+    public static final Creator<ArticuloModelo> CREATOR = new Creator<ArticuloModelo>() {
+        @Override
+        public ArticuloModelo createFromParcel(Parcel in) {
+            return new ArticuloModelo(in);
+        }
+
+        @Override
+        public ArticuloModelo[] newArray(int size) {
+            return new ArticuloModelo[size];
+        }
+    };
 
     public String getResumen() {
         return resumen;
@@ -101,6 +124,21 @@ public class ArticuloModelo implements Prototype{
         }
 
         return objeto;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(titulo);
+        dest.writeString(resumen);
+        dest.writeString(categoria);
+        dest.writeInt(id_ley);
+        dest.writeInt(prioridad);
     }
 
 }

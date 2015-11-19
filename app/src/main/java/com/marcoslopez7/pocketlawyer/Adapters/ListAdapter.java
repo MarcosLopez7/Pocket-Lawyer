@@ -5,6 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
+import com.marcoslopez7.pocketlawyer.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,18 +64,31 @@ public class ListAdapter extends ArrayAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View row = convertView;
-
+        LayoutHandler layoutHandler;
 
         if (row == null){
             LayoutInflater layoutInflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //row = layoutInflater.inflate(android.R.layout.list_articulos)
+            row = layoutInflater.inflate(R.layout.list_articulos, parent, false);
+            layoutHandler = new LayoutHandler();
+            layoutHandler.titulo = (TextView) row.findViewById(R.id.titulo_articulo);
+            layoutHandler.tituloLey = (TextView) row.findViewById(R.id.titulo_ley);
+            layoutHandler.resumen = (TextView) row.findViewById(R.id.resumen_articulo);
+            row.setTag(layoutHandler);
+        }else{
+            layoutHandler = (LayoutHandler)row.getTag();
+
         }
 
-        return super.getView(position, convertView, parent);
+        ArticuloModelo articulo = (ArticuloModelo)this.getItem(position);
+        layoutHandler.titulo.setText(articulo.getTitulo());
+        layoutHandler.tituloLey.setText(articulo.getId_ley() + "");
+        layoutHandler.resumen.setText(articulo.getResumen());
+
+        return row;
     }
 
     static class LayoutHandler{
-
+        TextView titulo, tituloLey, resumen;
 
     }
 }

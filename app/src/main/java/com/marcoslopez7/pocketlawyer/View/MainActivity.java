@@ -22,6 +22,7 @@ import com.marcoslopez7.pocketlawyer.Model.ConexionBD;
 import com.marcoslopez7.pocketlawyer.R;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
         // Algoritmo de busqueda
         String buscar = campoBusqueda.getText().toString();
         Vector<ArticuloModelo> articulos = articulo.buscar(buscar, this);
+        ArticuloModelo[] art;
         if(articulos != null) {
+            art = new ArticuloModelo[articulos.size()];
             for (int i = 0; i < articulos.size(); i++) {
-                Log.d("Articles", articulos.elementAt(i).getTitulo());
+                art[i] = (ArticuloModelo)articulos.elementAt(i).makeCopy();
             }
             Intent intent = new Intent(this, ListaArticulosActivity.class);
-            intent.putExtra("Art", articulos);
+            intent.putExtra("Art", art);
+            startActivity(intent);
         }else
             Toast.makeText(this, "Lo sentimos, hubo un error", Toast.LENGTH_LONG).show();
     }
