@@ -57,7 +57,8 @@ public class ListAdapterDeberes extends ArrayAdapter {
 
         }
 
-        Deber deber = (Deber)this.getItem(position);
+        final Deber deber = (Deber)this.getItem(position);
+
         layoutHandler.texto.setText(deber.getTexto());
 
         return row;

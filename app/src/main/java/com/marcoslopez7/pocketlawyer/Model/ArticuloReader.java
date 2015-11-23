@@ -18,7 +18,7 @@ public class ArticuloReader {
 
         public static final String CREATE_TABLE_LEYES =
                 "CREATE TABLE " + BD.TABLE_NAME_LEYES + " (" +
-                        BD._ID_LEY + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        BD._ID_LEY + " INTEGER PRIMARY KEY," +
                         BD.COLUMN_NAME_TITULO_LEY + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_FECHA_MODIFICACION + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_NUMERO_ARTICULOS + TEXT_TYPE + COMMA_SEP +
@@ -27,7 +27,7 @@ public class ArticuloReader {
 
         public static final String CREATE_TABLE_ARTICULOS =
                 "CREATE TABLE " + BD.TABLE_NAME_ARTICULOS + " (" +
-                        BD._ID_ARTICULO + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        BD._ID_ARTICULO + " INTEGER PRIMARY KEY," +
                         BD.COLUMN_NAME_TITULO_ARTICULO + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_RESUMEN + TEXT_TYPE + COMMA_SEP +
                         BD.COLUMN_NAME_CATEGORIA + TEXT_TYPE + COMMA_SEP +
@@ -38,7 +38,7 @@ public class ArticuloReader {
 
         public static final String CREATE_TABLE_BENEFICIOS =
                 "CREATE TABLE " + BD.TABLE_NAME_BENEFICIOS + " (" +
-                        BD._ID_BEN_DED + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        BD._ID_BEN_DED + " INTEGER PRIMARY KEY," +
                         BD.COLUMN_NAME_TEXTO + TEXT_TYPE + COMMA_SEP +
                         BD._ID_ARTICULO_F + " INTEGER" + COMMA_SEP +
                         FOREIGN_KEY_ARTICULO +
@@ -46,7 +46,7 @@ public class ArticuloReader {
 
     public static final String CREATE_TABLE_DEBERES =
             "CREATE TABLE " + BD.TABLE_NAME_DEBERES + " (" +
-                    BD._ID_BEN_DED + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    BD._ID_BEN_DED + " INTEGER PRIMARY KEY," +
                     BD.COLUMN_NAME_TEXTO + TEXT_TYPE + COMMA_SEP +
                     BD._ID_ARTICULO_F + " INTEGER" + COMMA_SEP +
                     FOREIGN_KEY_ARTICULO +

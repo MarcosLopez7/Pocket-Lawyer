@@ -29,7 +29,7 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
     private ArticuloControlador articulo;
-    private ConexionBD test;
+    //private ConexionBD test;
     private EditText campoBusqueda;
     private Button trbajo, transito, propiedad, constitucion, educacion;
 
@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         articulo = ArticuloControlador.getInstance(getApplicationContext());
 
         /*
-        DESCOMENTAR ESTAS LINEAS SI SE NECESITA HACER INSERCION DE DATOS, SIEMPRE SE HACE EN LA PRIMERA
-        INSTALACION Y PRUEBA DE LA APP, AL TERMINAR VOLVER A COMENTARLAS
-
         test = ConexionBD.getInstance(MainActivity.this);
         try {
             test.open();

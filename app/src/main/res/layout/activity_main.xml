@@ -15,7 +15,8 @@
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/b_buscar"
         android:layout_toStartOf="@+id/b_buscar"
-        android:hint="Escribe la palabra a buscar" />
+        android:hint="Escribe la palabra a buscar"
+        android:maxLength="30" />
 
     <Button
         android:layout_width="wrap_content"

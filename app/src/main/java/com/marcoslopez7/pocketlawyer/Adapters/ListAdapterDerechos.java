@@ -57,7 +57,7 @@ public class ListAdapterDerechos extends ArrayAdapter {
 
         }
 
-        Beneficios beneficios = (Beneficios)this.getItem(position);
+        final Beneficios beneficios = (Beneficios)this.getItem(position);
         layoutHandler.texto.setText(beneficios.getTexto());
 
         return row;

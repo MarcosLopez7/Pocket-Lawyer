@@ -52,28 +52,6 @@ public class ListaArticulosActivity extends AppCompatActivity /*implements Loade
         for (int i = 0; i < articulos.length; i++)
             lista_adaptador.add(articulos[i]);
 
-        registerForContextMenu(lv);
     }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        MenuInflater mi = getMenuInflater();
-        mi.inflate(R.menu.menu_lista_articulos, menu);
-
-
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-
-
-        return super.onContextItemSelected(item);
-    }
-
 
 }
