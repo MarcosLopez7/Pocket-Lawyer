@@ -111,15 +111,25 @@ public final class ConexionBD {
 
         cursor.moveToFirst();
 
-        ArticuloModelo articulo_temporal = new ArticuloModelo();
+        //ArticuloModelo articulo_temporal = new ArticuloModelo();
+        Creador articulo_temporal = new Creador();
+        articulo_temporal.creaArticulo(
+                cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO)),
+                cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO)),
+                cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_RESUMEN)),
+                cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_CATEGORIA)),
+                cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_ID_LEY_F)),
+                cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD))
+        );
+        /*
         articulo_temporal.setId(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD._ID_ARTICULO)));
         articulo_temporal.setTitulo(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_TITULO_ARTICULO)));
         articulo_temporal.setResumen(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_RESUMEN)));
         articulo_temporal.setCategoria(cursor.getString(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_CATEGORIA)));
         articulo_temporal.setPrioridad(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_PRIORIDAD)));
         articulo_temporal.setId_ley(cursor.getInt(cursor.getColumnIndex(ArticuloReader.BD.COLUMN_NAME_ID_LEY_F)));
-
-        return articulo_temporal;
+*/
+        return articulo_temporal.getArticulo();
     }
 
     public Vector<Beneficios> selectBeneficiosByIdArticulo(int id_articulo){

@@ -5,7 +5,7 @@ import com.marcoslopez7.pocketlawyer.Model.ArticuloModelo;
 /**
  * Created by user on 23/11/2015.
  */
-public class ArticuloConstructor {
+public class ArticuloConstructor implements ArticuloBuilder {
     private ArticuloModelo articulo;
 
     public ArticuloConstructor() {
@@ -31,6 +31,36 @@ public class ArticuloConstructor {
     public void buildPrioridad(int prioridad)
     {
         articulo.setPrioridad(prioridad);
+    }
+
+    @Override
+    public void buildId() {
+
+    }
+
+    @Override
+    public void buildTitulo() {
+
+    }
+
+    @Override
+    public void buildResumen() {
+
+    }
+
+    @Override
+    public void buildCategoria() {
+
+    }
+
+    @Override
+    public void buildIdLey() {
+
+    }
+
+    @Override
+    public void buildPrioridad() {
+
     }
 
     public ArticuloModelo getArticulo(){

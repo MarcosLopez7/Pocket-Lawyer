@@ -70,11 +70,14 @@ public class ListAdapter extends ArrayAdapter{
             layoutHandler = (LayoutHandler)row.getTag();
 
         }
-
+        //Log.d("SIZE", "Estas imprimiendo perra?");
         final ArticuloModelo articulo = (ArticuloModelo)this.getItem(position);
         layoutHandler.titulo.setText(articulo.getTitulo());
         layoutHandler.tituloLey.setText(leyControlador.findLeyById(articulo.getId_ley()).getTitulo());
-        layoutHandler.resumen.setText(articulo.getResumen());
+        if(articulo.getResumen().length() >= 100)
+            layoutHandler.resumen.setText(articulo.getResumen().substring(0, 100) + "...");
+        else
+            layoutHandler.resumen.setText(articulo.getResumen());
         layoutHandler.boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
